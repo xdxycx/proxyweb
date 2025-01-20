@@ -21,6 +21,7 @@ services:
     image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
+      TZ: Asia/Shanghai
     healthcheck:
       test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
@@ -39,6 +40,7 @@ services:
     image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
+      TZ: Asia/Shanghai
     healthcheck:
       test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
@@ -57,6 +59,7 @@ services:
     image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
+      TZ: Asia/Shanghai
     healthcheck:
       test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
@@ -75,6 +78,7 @@ services:
     image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
+      TZ: Asia/Shanghai
     healthcheck:
       test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
