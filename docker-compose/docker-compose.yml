@@ -1,5 +1,4 @@
-version: '3.3'
-
+name: proxyweb
 services:
   proxyweb:
     image: proxyweb/proxyweb
@@ -19,16 +18,15 @@ services:
 
   db1:
     hostname: db1
-    image: percona:5.7.26
+    image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
-      MYSQL_PWD: secret_password
     healthcheck:
-      test: "mysql -uroot -e 'SELECT 1'"
+      test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
       retries: 6
     volumes:
-      - ./mysql/my.cnf:/etc/percona-server.conf.d/mysqld.cnf
+      - ./mysql/my.cnf:/etc/mysql/conf.d/mysqld.cnf
       - ./mysql/setup_topology.sh:/setup_topology.sh:ro
       - ./mysql/sample_databases:/sample_databases
     command:
@@ -38,16 +36,15 @@ services:
 
   db2:
     hostname: db2
-    image: percona:5.7.26
+    image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
-      MYSQL_PWD: secret_password
     healthcheck:
-      test: "mysql -uroot -e 'SELECT 1'"
+      test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
       retries: 6
     volumes:
-      - ./mysql/my.cnf:/etc/percona-server.conf.d/mysqld.cnf
+      - ./mysql/my.cnf:/etc/mysql/conf.d/mysqld.cnf
       - ./mysql/setup_topology.sh:/setup_topology.sh:ro
       - ./mysql/sample_databases:/sample_databases
     command:
@@ -57,16 +54,15 @@ services:
 
   db3:
     hostname: db3
-    image: percona:5.7.26
+    image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
-      MYSQL_PWD: secret_password
     healthcheck:
-      test: "mysql -uroot -e 'SELECT 1'"
+      test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
       retries: 6
     volumes:
-      - ./mysql/my.cnf:/etc/percona-server.conf.d/mysqld.cnf
+      - ./mysql/my.cnf:/etc/mysql/conf.d/mysqld.cnf
       - ./mysql/setup_topology.sh:/setup_topology.sh:ro
       - ./mysql/sample_databases:/sample_databases
     command:
@@ -76,16 +72,15 @@ services:
 
   db4:
     hostname: db4
-    image: percona:5.7.26
+    image: mysql:8.0.31-debian
     environment:
       MYSQL_ROOT_PASSWORD: secret_password
-      MYSQL_PWD: secret_password
     healthcheck:
-      test: "mysql -uroot -e 'SELECT 1'"
+      test: "mysql -uroot -psecret_password -e 'SELECT 1'"
       interval: 10s
       retries: 6
     volumes:
-      - ./mysql/my.cnf:/etc/percona-server.conf.d/mysqld.cnf
+      - ./mysql/my.cnf:/etc/mysql/conf.d/mysqld.cnf
       - ./mysql/setup_topology.sh:/setup_topology.sh:ro
       - ./mysql/sample_databases:/sample_databases
     command:
@@ -187,7 +182,7 @@ services:
   goss:
     image: proxyweb/goss
     ports:
-      - "8000:8000"
+      - "18000:8000"
     volumes:
       - ${PWD}/goss/goss:/goss
     depends_on:
