@@ -1,6 +1,6 @@
 #!/bin/sh
 
-apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
+#apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt/lists/*
 mysql -uradmin -pradmin -h127.0.0.1 -P6032 -e "INSERT INTO mysql_users(username,password,default_hostgroup) VALUES ('sakila','sakila',1);"
 mysql -uradmin -pradmin -h127.0.0.1 -P6032 -e "INSERT INTO mysql_users(username,password,default_hostgroup) VALUES ('world','world',1);"
 mysql -uradmin -pradmin -h127.0.0.1 -P6032 -e "INSERT INTO mysql_servers (hostgroup_id,hostname) VALUES (1, 'db1')"
